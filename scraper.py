@@ -30,9 +30,9 @@ selectors = {
 
 #adres url pierwszej strony z opiniami o produkcie
 url_prefix = "https://www.ceneo.pl"
-product_id = input("Podaj identyfikator produktu: ")
+product_id = "/" + input("Podaj identyfikator produktu: ")
 url_postfix = "#tab=reviews"
-url = url_prefix+"/"+product_id+url_postfix
+url = url_prefix+product_id+url_postfix
 
 #pusta lista na opinie konsumentów 
 all_opinions = []

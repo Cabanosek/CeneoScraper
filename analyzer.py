@@ -21,4 +21,4 @@ pros = opinions.pros.count()
 cons = opinions.cons.count()
 stars = opinions.stars.value_counts()
 
-print(pros, cons, stars)
+print(pros, cons, stars, averaga_score)

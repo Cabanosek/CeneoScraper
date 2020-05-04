@@ -1,4 +1,4 @@
-# CeneoScraper11N
+# CeneoScraper
 ## Etap 1 - analiza struktury opinii w serwisie [Ceneo.pl](https://www.ceneo.pl/)
 |Składowa                |Selektor                                        |Nazwa zmiennej|
 |------------------------|------------------------------------------------|--------------|
@@ -29,5 +29,7 @@
 ## Etap 5 (Pandas, Matplotlib)
 - wczytanie opinii do ramki danych
 - policzenie podstawowych statystyk
-- narysowanie wykresów funkcji
+- narysowanie wykresów funkcji - matplotlib
 ## Etap 6 interfejs webowy dla scrapera (Flask)
+- typowa struktura plików i katalogów w projekcie Flask (Flask recommended file structure)
+- szablony przy użyciu Jinja
