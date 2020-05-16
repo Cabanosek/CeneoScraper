@@ -16,9 +16,36 @@ product_id = input("Podaj identyfikator produktu: ")
 opinions = pd.read_json(input_directory+"/"+product_id+".json")
 opinions = opinions.set_index("opinion_id")
 
+#avg = opinion['stars'].mean().round(2)
 averaga_score = opinions.stars.mean().round(2)
 pros = opinions.pros.count()
 cons = opinions.cons.count()
-stars = opinions.stars.value_counts()
+print(f'Średnia ocena: {averaga_score}\nLiczba opinii z zaletami: {pros}\nLiczba opinii z wadami: {cons}')
 
-print(pros, cons, stars, averaga_score)
+#histogram czestosci wystepowania poszczegolnych ocen (gwiazdek)
+stars = opinions.stars.value_counts().sort_index().reindex(list(np.arange(0,5.5,0.5)), fill_value=0)
+recommendation = opinions.recommendation.value_counts()
+fig, ax = plt.subplots()
+stars.plot.bar(color="#f5c3c2")
+plt.title('*****Gwiazdki*****')
+plt.xlabel("Liczba gwiazdek")
+plt.ylabel("Liczba opinii")
+plt.xticks(rotation=0)
+#plt.show()
+plt.savefig("figures_png/"+product_id+"_bar.png")
+plt.close()
+
+#udzial poszczegolnych rekomendacji w ogolnej liczbie opinii
+fig, ax = plt.subplots()
+recommendation.plot.pie(label="", autopct="%1.1f%%", colors=['#89cff0','#f5c3c2'])
+plt.title("<<<<Rekomendacja>>>>")
+# plt.show()
+plt.savefig("figures_png/"+product_id+"_pie.png")
+plt.close()
+
+print(opinions.purchase_date!=None)
+
+opinions['purchased'] = opinions.purchase_date != None
+print(opinions['purchased'])
+stars_purchased = pd.crosstab(opinions['stars'], opinions['purchased'])
+print(stars_purchased)
